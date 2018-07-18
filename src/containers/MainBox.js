@@ -8,13 +8,15 @@ class MainBox extends React.Component {
     super(props)
     this.state={
       menuChoice: "Profile",
+      previousEvent: null,
     }
   }
 
   getMenuChoice = (event) => {
     this.setState({
-      menuChoice: event.target.id
+      menuChoice: event.target.id,
     })
+
   }
 
   detailsToDisplay = () => {
@@ -37,7 +39,7 @@ class MainBox extends React.Component {
 
     return (
       <div>
-        <MenuBar getMenuChoice={this.getMenuChoice} />
+        <MenuBar getMenuChoice={this.getMenuChoice} highlight={this.state.menuChoice} />
         {this.detailsToDisplay()}
       </div>
     )
