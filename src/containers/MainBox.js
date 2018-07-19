@@ -3,7 +3,30 @@ import MenuBar from '../components/MenuBar.js'
 import { Profile, Photos, Cocktails, Pokemon} from '../components/Pages.js'
 
 class MainBox extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      page: "",
+    }
+  }
 
+  handleClick = (event) => {
+    this.setState({
+      page: event.target.id
+    }, () => console.log(this.state))
+  }
+
+  detailsToDisplay = () => {
+    if (this.state.page === "profile") {
+      return <Profile />
+    } else if (this.state.page === "photo") {
+      return <Photos />
+    } else if (this.state.page === "cocktail") {
+      return <Cocktails />
+    } else if (this.state.page === "pokemon") {
+      return <Pokemon />
+    }
+  }
 
   render() {
 
@@ -13,12 +36,12 @@ class MainBox extends React.Component {
 
     */
 
-    const detailsToDisplay = <div>Hi, I'm a div!</div>
+    // const detailsToDisplay = <div>Hi, I'm a div!</div>
 
     return (
       <div>
-        <MenuBar />
-        {detailsToDisplay}
+        <MenuBar onClick={this.handleClick}/>
+        {this.detailsToDisplay()}
       </div>
     )
   }
